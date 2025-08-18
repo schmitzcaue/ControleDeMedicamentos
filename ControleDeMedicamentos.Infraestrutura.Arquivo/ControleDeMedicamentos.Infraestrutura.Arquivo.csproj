@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ControleDeMedicamentos.Dominio\ControleDeMedicamentos.Dominio.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModuloFornecedor\" />
+  </ItemGroup>
+
 </Project>
