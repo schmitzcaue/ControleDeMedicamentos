@@ -15,16 +15,16 @@ public class Program
         // Injeção de dependências criadas por nós
 
 
-        builder.Services.AddScoped(ConfigurarContextoDados);
+        //builder.Services.AddScoped(ConfigurarContextoDados);
+        builder.Services.AddScoped((_) => new ContextoDados(true));
+
+
         builder.Services.AddScoped<RepositorioFornecedorEmArquivo>();     
         builder.Services.AddScoped<RepositorioPacienteEmArquivo>();          // Injeta uma instância do serviço por requisição (ação) HTTP, essa instância acompanha a requisição do cliente
         builder.Services.AddScoped<RepositorioMedicamentoEmArquivo>();     
         builder.Services.AddScoped<RepositorioFuncionarioEmArquivo>();          
         
 
-
-        //builder.Services.AddSingleton<RepositorioFuncionarioEmArquivo>();     // Injeta uma instância única do serviço globalmente
-        //builder.Services.AddTransient<RepositorioFuncionarioEmArquivo>();     // Injeta uma instância nova do serviço toda vez que houver uma dependência ao longo de uma requisição
 
         // Injeção de dependências da Microsoft.
         builder.Services.AddControllersWithViews();
@@ -43,10 +43,5 @@ public class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
-    }
-
-    private static ContextoDados ConfigurarContextoDados(IServiceProvider serviceProvider)
-    {
-        return new ContextoDados(true);
     }
 }
