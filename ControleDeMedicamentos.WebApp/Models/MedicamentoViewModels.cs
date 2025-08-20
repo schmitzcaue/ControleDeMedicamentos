@@ -145,8 +145,8 @@ public class VisualizarMedicamentoViewModel
                 m.Nome,
                 m.Descricao,
                 m.QuantidadeEmEstoque,
-                //m.Nome.Fornecedor
-            m.Fornecedor?.Nome ?? "Fornecedor não informado" // Correção necessaria
+                m.Fornecedor.Nome
+            //m.Fornecedor?.Nome ?? "Fornecedor não informado" // Correção necessaria
             );
 
             Registros.Add(detalhesVM);

@@ -3,11 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.Dominio.ModuloPaciente;
-//Nome(3-100 caracteres)
-//Telefone(formatos válidos: (XX) XXXX-XXXX ou (XX) XXXXX-XXXX)
-//Cartão do SUS(15 dígitos)
-//CPF(11 dígitos)
-
 public class Paciente : EntidadeBase<Paciente>
 {
     public string Nome { get; set; }
@@ -15,7 +10,7 @@ public class Paciente : EntidadeBase<Paciente>
     public string CartaoDoSus { get; set; }
     public string Cpf { get; set; }
 
-    protected Paciente() { }
+    public Paciente() { }
 
     public Paciente(string nome, string telefone, string cpf, string cartaoDoSus) : this()
     {
