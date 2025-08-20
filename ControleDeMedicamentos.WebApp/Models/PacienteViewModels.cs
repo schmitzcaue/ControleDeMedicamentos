@@ -1,5 +1,4 @@
-﻿//using ControleDeMedicamentos.Dominio.Fornecedor;
-using ControleDeMedicamentos.Dominio.ModuloPaciente;
+﻿using ControleDeMedicamentos.Dominio.ModuloPaciente;
 using System.ComponentModel.DataAnnotations;
 
 namespace ControleDeMedicamentos.WebApp.Models;
@@ -56,10 +55,10 @@ public class EditarPacienteViewModel
     public string Telefone { get; set; }
 
 
-    [Required(ErrorMessage = "O campo 'Telefone' é obrigatório.")]
+    [Required(ErrorMessage = "O campo 'Cartao do Sus' é obrigatório.")]
     [RegularExpression(
        @"^\(?\d{15}\)$",
-       ErrorMessage = "O campo 'CartaoDoSus' deve conter 15 carácteres."
+       ErrorMessage = "O campo 'Cartao do Sus' deve conter 15 carácteres."
    )]
     public string CartaoDoSus { get; set; }
 
