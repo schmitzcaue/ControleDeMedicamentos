@@ -16,9 +16,11 @@ public class CadastrarPacienteViewModel
     )]
     public string Telefone { get; set; }
 
-    [Required(ErrorMessage = "O campo 'Cartão do Sus' é obrigatório.")]
-    [StringLength(15, MinimumLength = 2, ErrorMessage = "O campo 'Cartão do Sus' deve conter 15 caracteres.")]
-
+    [Required(ErrorMessage = "O campo 'Cartão do SUS' é obrigatório.")]
+    [RegularExpression(
+        @"^\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$",
+        ErrorMessage = "O campo 'Cartão do SUS' deve seguir o formato 000 0000 0000 0000."
+    )]
     public string CartaoDoSus { get; set; }
 
     [Required(ErrorMessage = "O campo 'CPF' é obrigatório.")]
@@ -57,11 +59,10 @@ public class EditarPacienteViewModel
 
     [Required(ErrorMessage = "O campo 'Cartao do Sus' é obrigatório.")]
     [RegularExpression(
-       @"^\(?\d{15}\)$",
-       ErrorMessage = "O campo 'Cartao do Sus' deve conter 15 carácteres."
-   )]
+        @"^\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$",
+        ErrorMessage = "O campo 'Cartão do SUS' deve seguir o formato 000 0000 0000 0000."
+    )]
     public string CartaoDoSus { get; set; }
-
 
     [Required(ErrorMessage = "O campo 'CPF' é obrigatório.")]
     [RegularExpression(
@@ -69,6 +70,7 @@ public class EditarPacienteViewModel
         ErrorMessage = "O campo 'CPF' deve seguir o formato 000.000.000-00."
     )]
     public string Cpf { get; set; }
+
 
     public EditarPacienteViewModel() { }
 

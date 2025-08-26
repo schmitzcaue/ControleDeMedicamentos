@@ -36,25 +36,16 @@ public class Paciente : EntidadeBase<Paciente>
         if (string.IsNullOrWhiteSpace(Nome))
             erros += "O campo 'Nome' é obrigatório.\n";
 
-        else if (Nome.Length < 2 || Nome.Length > 100)
-            erros += "O campo 'Nome' deve conter entre 2 e 100 caracteres.\n";
+        if (Nome.Length < 3 || Nome.Length > 100)
+            erros += "O campo 'Nome' deve conter entre 3 e 100 caracteres.\n";
 
-        if (string.IsNullOrWhiteSpace(Telefone))
-            erros += "O campo 'Telefone' é obrigatório.\n";
+        if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
+            erros += "O campo 'Telefone' é deve seguir o padrão (DDD) 0000-0000 ou (DDD) 00000-0000.\n";
 
-        else if (!Regex.IsMatch(Telefone, @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$"))
-            erros += "O campo 'Telefone' deve seguir o padrão (DDD) 0000-0000 ou (DDD) 00000-0000.\n";
+        if (!Regex.IsMatch(CartaoDoSus, @"^\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$"))
+            erros += "O campo 'Cartão do Sus' é precisa conter 15 números.\n";
 
-        if (string.IsNullOrWhiteSpace(CartaoDoSus))
-            erros += "O campo 'Cartão do SUS' é obrigatório.\n";
-
-        else if (!Regex.IsMatch(CartaoDoSus, @"^\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$"))
-            erros += "O campo 'Cartão do SUS' deve conter 15 digitos.\n";
-
-        if (string.IsNullOrWhiteSpace(Cpf))
-            erros += "O campo 'CPF' é obrigatório.\n";
-
-        else if (!Regex.IsMatch(Cpf, @"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
+        if (!Regex.IsMatch(Cpf, @"^\d{3}\.\d{3}\.\d{3}-\d{2}$"))
             erros += "O campo 'CPF' deve seguir o formato 000.000.000-00.\n";
 
         return erros;
