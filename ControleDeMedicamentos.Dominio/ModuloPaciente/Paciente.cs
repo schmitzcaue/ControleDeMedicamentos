@@ -48,7 +48,7 @@ public class Paciente : EntidadeBase<Paciente>
         if (string.IsNullOrWhiteSpace(CartaoDoSus))
             erros += "O campo 'Cartão do SUS' é obrigatório.\n";
 
-        else if (!Regex.IsMatch(CartaoDoSus, @"^\d{15}$"))
+        else if (!Regex.IsMatch(CartaoDoSus, @"^\d{3}\s?\d{4}\s?\d{4}\s?\d{4}$"))
             erros += "O campo 'Cartão do SUS' deve conter 15 digitos.\n";
 
         if (string.IsNullOrWhiteSpace(Cpf))
