@@ -5,8 +5,9 @@ using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloMedicamento;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloFuncionario;
 using Serilog;
 using Serilog.Events;
-using ControleDeMedicamentos.WebApp.DependencyInjection;
 
+
+using ControleDeMedicamentos.WebApp.DependencyInjection;
 namespace ControleDeMedicamentos.WebApp;
 
 public class Program

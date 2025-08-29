@@ -1,120 +1,190 @@
-﻿//﻿using ControleDeMedicamentos.Dominio.ModuloFuncionario;
-//using ControleDeMedicamentos.Dominio.ModuloPrescriao;
-//using System.ComponentModel.DataAnnotations;
+﻿using ControleDeMedicamentos.Dominio.ModuloMedicamento;
+using ControleDeMedicamentos.Dominio.ModuloPaciente;
+using ControleDeMedicamentos.Dominio.ModuloPrescricao;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
 
-//namespace ControleDeMedicamentos.WebApp.Models;
+namespace ControleDeMedicamentos.WebApp.Models;
 
-//public class CadastrarPrescricaoViewModel
-//{
-//    [Required(ErrorMessage = "O campo 'Crm' é obrigatório.")]
-//    [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo 'Crm' deve conter 6 caracteres.")]
-//    public string Nome { get; set; }
+public class CadastrarPrescricaoViewModel
+{
+    [Required(ErrorMessage = "O campo 'Descrição' é obrigatório.")]
+    public string Descricao { get; set; }
 
-//    [Required(ErrorMessage = "O campo 'Telefone' é obrigatório.")]
-//    [RegularExpression(
-//        @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$",
-//        ErrorMessage = "O campo 'Telefone' deve seguir o padrão (DDD) 0000-0000 ou (DDD) 00000-0000."
-//    )]
-//    public string Telefone { get; set; }
+    [Required(ErrorMessage = "O campo 'Data de Validade' é obrigatório.")]
+    public DateTime DataValidade { get; set; }
 
-//    [Required(ErrorMessage = "O campo 'CPF' é obrigatório.")]
-//    [RegularExpression(
-//        @"^\d{3}\.\d{3}\.\d{3}-\d{2}$",
-//        ErrorMessage = "O campo 'CPF' deve seguir o formato 000.000.000-00."
-//    )]
-//    public string Cpf { get; set; }
+    [Required(ErrorMessage = "O campo 'CRM do Médico' é obrigatório.")]
+    [RegularExpression(
+        @"^\d{4,7}-?[A-Z]{2}$",
+        ErrorMessage = "O campo 'CRM do Médico' deve seguir o padrão 1111000-UF."
+    )]
+    public string CrmMedico { get; set; }
 
-//    public CadastrarPrescricaoViewModel() { }
+    [Required(ErrorMessage = "O campo 'Paciente' é obrigatório.")]
+    public Guid PacienteId { get; set; }
+    public List<SelectListItem> PacientesDisponiveis { get; set; } = new List<SelectListItem>();
 
-//    public CadastrarPrescricaoViewModel(string nome, string telefone, string cpf) : this()
-//    {
-//        Nome = nome;
-//        Telefone = telefone;
-//        Cpf = cpf;
-//    }
-//}
+    public CadastrarPrescricaoViewModel() { }
 
-//public class EditarrPrescricaoViewModel
-//{
-//    public Guid Id { get; set; }
+    public CadastrarPrescricaoViewModel(List<Paciente> pacientes) : this()
+    {
+        // Projeção de listas
+        PacientesDisponiveis = pacientes
+            .Select(p => new SelectListItem(p.Nome, p.Id.ToString()))
+            .ToList();
 
-//    [Required(ErrorMessage = "O campo 'Nome' é obrigatório.")]
-//    [StringLength(100, MinimumLength = 2, ErrorMessage = "O campo 'Nome' deve conter entre 2 e 100 caracteres.")]
-//    public string Nome { get; set; }
+    }
+}
 
-//    [Required(ErrorMessage = "O campo 'Telefone' é obrigatório.")]
-//    [RegularExpression(
-//        @"^\(?\d{2}\)?\s?(9\d{4}|\d{4})-?\d{4}$",
-//        ErrorMessage = "O campo 'Telefone' deve seguir o padrão (DDD) 0000-0000 ou (DDD) 00000-0000."
-//    )]
-//    public string Telefone { get; set; }
+public class VisualizarPrescricoesViewModel
+{
+    public List<DetalhesPrescricaoViewModel> Registros { get; }
 
-//    [Required(ErrorMessage = "O campo 'CPF' é obrigatório.")]
-//    [RegularExpression(
-//        @"^\d{3}\.\d{3}\.\d{3}-\d{2}$",
-//        ErrorMessage = "O campo 'CPF' deve seguir o formato 000.000.000-00."
-//    )]
-//    public string Cpf { get; set; }
+    public VisualizarPrescricoesViewModel(List<Prescricao> prescricoes)
+    {
+        Registros = prescricoes
+            .Select(p => new DetalhesPrescricaoViewModel(
+                p.Id,
+                p.Descricao,
+                p.CrmMedico,
+                p.Paciente.Nome,
+                p.DataEmissao,
+                p.DataValidade,
+                p.MedicamentosPrescritos
+            ))
+            .ToList();
+    }
+}
 
-//    public EditarrPrescricaoViewModel() { }
+public class DetalhesPrescricaoViewModel
+{
+    public Guid Id { get; set; }
+    public string Descricao { get; set; }
+    public string CrmMedico { get; set; }
+    public string Paciente { get; set; }
+    public DateTime DataEmissao { get; set; }
+    public DateTime DataValidade { get; set; }
 
-//    public EditarrPrescricaoViewModel(Guid id, string nome, string telefone, string cpf) : this()
-//    {
-//        Id = id;
-//        Nome = nome;
-//        Telefone = telefone;
-//        Cpf = cpf;
-//    }
-//}
+    public List<DetalhesMedicamentoPrescritoViewModel> MedicamentosPrescritos { get; set; } = new List<DetalhesMedicamentoPrescritoViewModel>();
 
-//public class ExcluirrPrescricaoViewModel
-//{
-//    public Guid Id { get; set; }
-//    public string Nome { get; set; }
+    public DetalhesPrescricaoViewModel(
+        Guid id,
+        string descricao,
+        string crmMedico,
+        string paciente,
+        DateTime dataEmissao,
+        DateTime dataValidade,
+        List<MedicamentoPrescrito> medicamentosPrescritos
+    )
+    {
+        Id = id;
+        Descricao = descricao;
+        CrmMedico = crmMedico;
+        Paciente = paciente;
+        DataEmissao = dataEmissao;
+        DataValidade = dataValidade;
 
-//    public ExcluirrPrescricaoViewModel() { }
+        MedicamentosPrescritos = medicamentosPrescritos
+          .Select(m => new DetalhesMedicamentoPrescritoViewModel(
+              m.Id,
+              m.Medicamento.Id,
+              m.Medicamento.Nome,
+              m.Dosagem,
+              m.Periodo,
+              m.Quantidade))
+          .ToList();
+    }
+}
 
-//    public ExcluirrPrescricaoViewModel(Guid id, string nome) : this()
-//    {
-//        Id = id;
-//        Nome = nome;
-//    }
-//}
+public class AdicionarMedicamentoPrescritoViewModel
+{
+    public Guid MedicamentoId { get; set; }
+    public string DosagemMedicamento { get; set; }
+    public string PeriodoMedicamento { get; set; }
+    public int QuantidadeMedicamento { get; set; }
+}
 
-//public class VisualizarrPrescricoesViewModel
-//{
-//    public List<DetalhesFuncionarioViewModel> Registros { get; }
+public class DetalhesMedicamentoPrescritoViewModel
+{
+    public Guid Id { get; set; }
+    public Guid MedicamentoId { get; set; }
+    public string Medicamento { get; set; }
+    public string Dosagem { get; set; }
+    public string Periodo { get; set; }
+    public int Quantidade { get; set; }
 
-//    public VisualizarrPrescricoesViewModel(List<Prescricao> funcionarios)
-//    {
-//        Registros = [];
+    public DetalhesMedicamentoPrescritoViewModel() { }
 
-//        foreach (var f in funcionarios)
-//        {
-//            var detalhesVM = new DetalhesFuncionarioViewModel(
-//                f.Id,
-//                f.Nome,
-//                f.Telefone,
-//                f.Cpf
-//            );
+    public DetalhesMedicamentoPrescritoViewModel(
+        Guid id,
+        Guid medicamentoId,
+        string nomeMedicamento,
+        string dosagem,
+        string periodo,
+        int quantidade
+    ) : this()
+    {
+        Id = id;
+        MedicamentoId = medicamentoId;
+        Medicamento = nomeMedicamento;
+        Dosagem = dosagem;
+        Periodo = periodo;
+        Quantidade = quantidade;
+    }
+}
 
-//            Registros.Add(detalhesVM);
-//        }
-//    }
-//}
+public class GerenciarPrescricaoViewModel
+{
+    public Guid Id { get; set; }
+    public string Descricao { get; set; }
+    public string CrmMedico { get; set; }
+    public Guid PacienteId { get; set; }
+    public string Paciente { get; set; }
 
-//public class DetalhesPrescricaoViewModel
-//{
-//    public Guid Id { get; set; }
-//    public string Nome { get; set; }
-//    public string Telefone { get; set; }
-//    public string Cpf { get; set; }
+    public List<SelectListItem> MedicamentosDisponiveis { get; set; }
+    public List<DetalhesMedicamentoPrescritoViewModel> MedicamentosPrescritos { get; set; } = new List<DetalhesMedicamentoPrescritoViewModel>();
 
-//    public DetalhesPrescricaoViewModel(Guid id, string nome, string telefone, string cpf)
-//    {
-//        Id = id;
-//        Nome = nome;
-//        Telefone = telefone;
-//        Cpf = cpf;
-//    }
-//}
+    public GerenciarPrescricaoViewModel() { }
+
+    public GerenciarPrescricaoViewModel(
+        Guid id,
+        string descricao,
+        string crmMedico,
+        Guid pacienteId,
+        string paciente,
+        List<Medicamento> medicamentos
+    ) : this()
+    {
+        Id = id;
+        Descricao = descricao;
+        CrmMedico = crmMedico;
+        PacienteId = pacienteId;
+        Paciente = paciente;
+
+        MedicamentosDisponiveis = medicamentos
+            .Select(m => new SelectListItem(m.Nome, m.Id.ToString()))
+            .ToList();
+    }
+
+    public GerenciarPrescricaoViewModel(
+        Guid id,
+        string descricao,
+        string crmMedico,
+        Guid pacienteId,
+        string paciente,
+        List<MedicamentoPrescrito> medicamentosPrescritos,
+        List<Medicamento> medicamentos
+    ) : this(id, descricao, crmMedico, pacienteId, paciente, medicamentos)
+    {
+        MedicamentosPrescritos = medicamentosPrescritos
+            .Select(m => new DetalhesMedicamentoPrescritoViewModel(
+                m.Id,
+                m.Medicamento.Id,
+                m.Medicamento.Nome,
+                m.Dosagem,
+                m.Periodo,
+                m.Quantidade))
+            .ToList();
+    }
+}

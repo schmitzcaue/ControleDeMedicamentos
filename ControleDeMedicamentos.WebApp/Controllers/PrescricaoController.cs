@@ -5,6 +5,7 @@ using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPaciente;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPrescricao;
 using ControleDeMedicamentos.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace ControleDeMedicamentos.WebApp.Controllers;
 
@@ -52,11 +53,21 @@ public class PrescricaoController : Controller
     public IActionResult Cadastrar(CadastrarPrescricaoViewModel cadastrarVm)
     {
         if (!ModelState.IsValid)
+        {
+            var pacientesDisponiveis = repositorioPaciente.SelecionarRegistros();
+
+            cadastrarVm.PacientesDisponiveis = pacientesDisponiveis
+                .Select(p => new SelectListItem(p.Nome, p.Id.ToString()))
+                .ToList();
+
             return View(cadastrarVm);
+        }
 
         var pacienteSelecionado = repositorioPaciente.SelecionarRegistroPorId(cadastrarVm.PacienteId);
 
         var entidade = new Prescricao(
+            cadastrarVm.Descricao,
+            cadastrarVm.DataValidade,
             cadastrarVm.CrmMedico,
             pacienteSelecionado
         );
@@ -75,6 +86,7 @@ public class PrescricaoController : Controller
 
         var gerenciarVm = new GerenciarPrescricaoViewModel(
             id,
+            prescricaoSelecionada.Descricao,
             prescricaoSelecionada.CrmMedico,
             prescricaoSelecionada.Paciente.Id,
             prescricaoSelecionada.Paciente.Nome,
@@ -101,7 +113,7 @@ public class PrescricaoController : Controller
 
         contexto.Salvar();
 
-        return RedirectToAction(nameof(Gerenciar), new { id = prescricaoSelecionada.Id });
+        return RedirectToAction(nameof(Gerenciar), new { id = idPrescricao });
     }
 
     [HttpPost]
@@ -113,6 +125,6 @@ public class PrescricaoController : Controller
 
         contexto.Salvar();
 
-        return RedirectToAction(nameof(Gerenciar), new { id = prescricaoSelecionada.Id });
+        return RedirectToAction(nameof(Gerenciar), new { id = idPrescricao });
     }
 }
