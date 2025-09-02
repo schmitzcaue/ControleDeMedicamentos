@@ -12,13 +12,13 @@ namespace ControleDeMedicamentos.WebApp.Controllers;
 public class PrescricaoController : Controller
 {
     private readonly ContextoDados contexto;
-    private readonly RepositorioPrescricaoEmArquivo repositorioPrescricao;
+    private readonly RepositorioRequisicaoMedicamento repositorioPrescricao;
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
     private readonly RepositorioPacienteEmArquivo repositorioPaciente;
 
     public PrescricaoController(
         ContextoDados contexto,
-        RepositorioPrescricaoEmArquivo repositorioPrescricao,
+        RepositorioRequisicaoMedicamento repositorioPrescricao,
         RepositorioMedicamentoEmArquivo repositorioMedicamento,
         RepositorioPacienteEmArquivo repositorioPaciente
     )

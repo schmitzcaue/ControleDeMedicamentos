@@ -12,6 +12,21 @@ public class Medicamento : EntidadeBase<Medicamento>
     public string Descricao { get; set; }
     public int QuantidadeEmEstoque { get; set; }
     public Fornecedor Fornecedor { get; set; }
+    public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
+
+    public int QuantidadeEmEstoque
+    {
+        get
+        {
+            int quantidadeEmEstoque = 0;
+
+            foreach (var req in RequisicoesEntrada)
+                quantidadeEmEstoque += req.QuantidadeRequisitada;
+
+            return quantidadeEmEstoque;
+        }
+    }
+
 
     public bool EmFalta
     {
@@ -33,6 +48,11 @@ public class Medicamento : EntidadeBase<Medicamento>
         Nome = registroEditado.Nome;
         Descricao = registroEditado.Descricao;
         Fornecedor = registroEditado.Fornecedor;
+    }
+    public void AdicionarAoEstoque(RequisicaoEntrada requisicaoEntrada)
+    {
+        if (!RequisicoesEntrada.Contains(requisicaoEntrada))
+            RequisicoesEntrada.Add(requisicaoEntrada);
     }
 
     public override string Validar()
