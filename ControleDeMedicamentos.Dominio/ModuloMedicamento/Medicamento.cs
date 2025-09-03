@@ -1,5 +1,6 @@
 ﻿using ControleDeMedicamentos.Dominio.Compartilhado;
 using ControleDeMedicamentos.Dominio.ModuloFornecedor;
+using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
@@ -10,7 +11,6 @@ public class Medicamento : EntidadeBase<Medicamento>
 {
     public string Nome { get; set; }
     public string Descricao { get; set; }
-    public int QuantidadeEmEstoque { get; set; }
     public Fornecedor Fornecedor { get; set; }
     public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
 

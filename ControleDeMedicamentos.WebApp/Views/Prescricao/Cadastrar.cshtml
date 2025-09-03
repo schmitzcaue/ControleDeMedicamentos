@@ -1,4 +1,4 @@
-﻿@{
+﻿﻿@{
     ViewBag.Titulo = "Cadastro de Prescrição";
 }
 
@@ -6,6 +6,18 @@
 
 <div class="row justify-content-center">
     <form class="col-lg-8 col-xl-6" asp-action="Cadastrar" method="post">
+        <div class="mb-3">
+            <label asp-for="Descricao" class="form-label">Descrição</label>
+            <input class="form-control" asp-for="Descricao">
+            <span asp-validation-for="Descricao" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DataValidade" class="form-label">Data de Validade</label>
+            <input class="form-control" asp-for="DataValidade" type="date">
+            <span asp-validation-for="DataValidade" class="text-danger"></span>
+        </div>
+
         <div class="mb-3">
             <label asp-for="CrmMedico" class="form-label">CRM do Médico</label>
             <input class="form-control" asp-for="CrmMedico">

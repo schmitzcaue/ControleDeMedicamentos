@@ -1,11 +1,11 @@
 ﻿using ControleDeMedicamentos.Dominio.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.Compartilhado;
 
-namespace ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPrescricao;
+namespace ControleDeMedicamentos.Infraestrutura.Arquivo.ModuloPrescricao;
 
-public class RepositorioRequisicaoMedicamento : RepositorioBaseEmArquivo<Prescricao>
+public class RepositorioPrescricaoEmArquivo : RepositorioBaseEmArquivo<Prescricao>
 {
-    public RepositorioRequisicaoMedicamento(ContextoDados contextoDados) : base(contextoDados) { }
+    public RepositorioPrescricaoEmArquivo(ContextoDados contextoDados) : base(contextoDados) { }
 
     protected override List<Prescricao> ObterRegistros()
     {
