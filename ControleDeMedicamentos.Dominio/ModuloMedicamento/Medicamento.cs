@@ -1,9 +1,7 @@
-﻿using ControleDeMedicamentos.Dominio.Compartilhado;
+﻿
+using ControleDeMedicamentos.Dominio.Compartilhado;
 using ControleDeMedicamentos.Dominio.ModuloFornecedor;
 using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
-using System.Diagnostics.CodeAnalysis;
-using System.Text.Json.Serialization;
-using System.Text.RegularExpressions;
 
 namespace ControleDeMedicamentos.Dominio.ModuloMedicamento;
 
@@ -13,7 +11,7 @@ public class Medicamento : EntidadeBase<Medicamento>
     public string Descricao { get; set; }
     public Fornecedor Fornecedor { get; set; }
     public List<RequisicaoEntrada> RequisicoesEntrada { get; set; } = new List<RequisicaoEntrada>();
-
+    public List<RequisicaoSaida> RequisicoesSaida { get; set; } = new List<RequisicaoSaida>();
     public int QuantidadeEmEstoque
     {
         get
@@ -22,6 +20,12 @@ public class Medicamento : EntidadeBase<Medicamento>
 
             foreach (var req in RequisicoesEntrada)
                 quantidadeEmEstoque += req.QuantidadeRequisitada;
+
+            foreach (var req in RequisicoesSaida)
+            {
+                foreach (var med in req.Prescricao.MedicamentosPrescritos)
+                    quantidadeEmEstoque -= med.Quantidade;
+            }
 
             return quantidadeEmEstoque;
         }
@@ -35,7 +39,11 @@ public class Medicamento : EntidadeBase<Medicamento>
 
     public Medicamento() { }
 
-    public Medicamento(string nome, string descricao, Fornecedor fornecedor) : this()
+    public Medicamento(
+      string nome,
+      string descricao,
+      Fornecedor fornecedor
+  ) : this()
     {
         Id = Guid.NewGuid();
         Nome = nome;
@@ -43,16 +51,23 @@ public class Medicamento : EntidadeBase<Medicamento>
         Fornecedor = fornecedor;
     }
 
-    public override void AtualizarRegistro(Medicamento registroEditado)
-    {
-        Nome = registroEditado.Nome;
-        Descricao = registroEditado.Descricao;
-        Fornecedor = registroEditado.Fornecedor;
-    }
     public void AdicionarAoEstoque(RequisicaoEntrada requisicaoEntrada)
     {
         if (!RequisicoesEntrada.Contains(requisicaoEntrada))
             RequisicoesEntrada.Add(requisicaoEntrada);
+    }
+
+    public void RemoverDoEstoque(RequisicaoSaida requisicaoSaida)
+    {
+        if (!RequisicoesSaida.Contains(requisicaoSaida))
+            RequisicoesSaida.Add(requisicaoSaida);
+    }
+
+    public override void AtualizarRegistro(Medicamento registroAtualizado)
+    {
+        Nome = registroAtualizado.Nome;
+        Descricao = registroAtualizado.Descricao;
+        Fornecedor = registroAtualizado.Fornecedor;
     }
 
     public override string Validar()
