@@ -1,7 +1,7 @@
 ﻿using ControleDeMedicamentos.Dominio.ModuloFuncionario;
 using ControleDeMedicamentos.Dominio.ModuloMedicamento;
-using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
 using ControleDeMedicamentos.Dominio.ModuloPrescricao;
+using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
@@ -38,11 +38,9 @@ public class CadastrarRequisicaoEntradaViewModel
 public class VisualizarRequisicoesMedicamentoViewModel
 {
     public List<DetalhesRequisicaoEntradaViewModel> RequisicoesEntrada { get; set; }
-
     public List<DetalhesRequisicaoSaidaViewModel> RequisicoesSaida { get; set; }
 
-    public VisualizarRequisicoesMedicamentoViewModel(List<RequisicaoEntrada> requisicoesEntrada,
-        List<RequisicaoSaida> requisicoesSaida)
+    public VisualizarRequisicoesMedicamentoViewModel(List<RequisicaoEntrada> requisicoesEntrada, List<RequisicaoSaida> requisicoesSaida)
     {
         RequisicoesEntrada = requisicoesEntrada
             .Select(r => new DetalhesRequisicaoEntradaViewModel(
@@ -55,15 +53,15 @@ public class VisualizarRequisicoesMedicamentoViewModel
             .ToList();
 
         RequisicoesSaida = requisicoesSaida
-         .Select(r => new DetalhesRequisicaoSaidaViewModel(
-             r.Id,
-             r.DataOcorrencia,
-             r.Funcionario.Nome,
-             r.Prescricao.Paciente.Nome,
-             r.Prescricao.Descricao,
-             r.Prescricao.MedicamentosPrescritos
-         ))
-         .ToList();
+            .Select(r => new DetalhesRequisicaoSaidaViewModel(
+                r.Id,
+                r.DataOcorrencia,
+                r.Funcionario.Nome,
+                r.Prescricao.Paciente.Nome,
+                r.Prescricao.Descricao,
+                r.Prescricao.MedicamentosPrescritos
+            ))
+            .ToList();
     }
 }
 
@@ -88,7 +86,6 @@ public class DetalhesRequisicaoEntradaViewModel
         Funcionario = funcionario;
         Medicamento = medicamento;
         QuantidadeRequisitada = quantidadeRequisitada;
-
     }
 }
 
