@@ -19,6 +19,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ControleDeMedicamentos.Util
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Utilidade", "4-Utilidade", "{08542960-50C9-4D92-92D3-F4122D8EAF51}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ControleDeMedicamentos.Infraestrutura.SqlServer", "ControleDeMedicamentos.Infraestrutura.SqlServer\ControleDeMedicamentos.Infraestrutura.SqlServer.csproj", "{D391EC9C-8FB4-4FC2-8ED1-CC341E340812}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{06FDB929-BA09-4157-9B4C-D87785E5910B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06FDB929-BA09-4157-9B4C-D87785E5910B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{06FDB929-BA09-4157-9B4C-D87785E5910B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D391EC9C-8FB4-4FC2-8ED1-CC341E340812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D391EC9C-8FB4-4FC2-8ED1-CC341E340812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D391EC9C-8FB4-4FC2-8ED1-CC341E340812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D391EC9C-8FB4-4FC2-8ED1-CC341E340812}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -52,6 +58,7 @@ Global
 		{F3AD62B2-E1DC-4C3A-A420-8E9285608CC2} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{9EFD0CC0-33D0-4FBD-B970-64E1D90A7543} = {FC4EFBB5-CE48-416E-99F3-0C55F33EE5BB}
 		{06FDB929-BA09-4157-9B4C-D87785E5910B} = {08542960-50C9-4D92-92D3-F4122D8EAF51}
+		{D391EC9C-8FB4-4FC2-8ED1-CC341E340812} = {FC4EFBB5-CE48-416E-99F3-0C55F33EE5BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5FE1D9CC-7D10-4292-82AA-9ADAEAB5DF48}
