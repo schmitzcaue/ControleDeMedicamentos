@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[TBEstoque]
+(
+	[Id] INT NOT NULL PRIMARY KEY
+)
