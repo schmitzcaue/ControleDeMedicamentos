@@ -1,10 +1,13 @@
 ﻿using ControleDeMedicamentos.Infraestrutura.Arquivo.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.Compartilhado;
-using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloFornecedor;
-using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloFuncionario;
-using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloMedicamento;
-using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPaciente;
+
+
+using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloMedicamento;
+
+//using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloRequisicaoMedicamento;
+using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloFornecedor;
+using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloFuncionario;
 using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloPaciente;
 using Microsoft.Data.SqlClient;
 using System.Data;
@@ -21,13 +24,19 @@ public static class InfraestruturaConfig
             return new SqlConnection(connectionString);
         });
 
+
         services.AddScoped<RepositorioPacienteEmSql>();
+        services.AddScoped<RepositorioFuncionarioEmSql>();
+        services.AddScoped<RepositorioFornecedorEmSql>();
 
         services.AddScoped((_) => new ContextoDados(true));
-        services.AddScoped<RepositorioMedicamentoEmArquivo>();
-        services.AddScoped<RepositorioFornecedorEmArquivo>();
-        services.AddScoped<RepositorioFuncionarioEmArquivo>();
-        services.AddScoped<RepositorioPacienteEmArquivo>();
+        //services.AddScoped<RepositorioPacienteEmArquivo>();
+        //services.AddScoped<RepositorioFuncionarioEmArquivo>();
+        //services.AddScoped<RepositorioFornecedorEmArquivo>();
+        services.AddScoped<RepositorioMedicamentoEmSql>();
+
+
+
         services.AddScoped<RepositorioPrescricaoEmArquivo>();
         services.AddScoped<RepositorioRequisicaoMedicamentoEmArquivo>();
     }

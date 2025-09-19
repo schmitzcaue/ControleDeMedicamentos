@@ -16,7 +16,6 @@
     <ProjectReference Include="..\ControleDeMedicamentos.Dominio\ControleDeMedicamentos.Dominio.csproj" />
     <ProjectReference Include="..\ControleDeMedicamentos.Infraestrutura.Arquivo\ControleDeMedicamentos.Infraestrutura.Arquivo.csproj" />
     <ProjectReference Include="..\ControleDeMedicamentos.Infraestrutura.SqlServer\ControleDeMedicamentos.Infraestrutura.SqlServer.csproj" />
-    <ProjectReference Include="..\ControleDeMedicamentos.Util.SqlProject\ControleDeMedicamentos.Util.SqlProject.sqlproj" />
   </ItemGroup>
 
 </Project>

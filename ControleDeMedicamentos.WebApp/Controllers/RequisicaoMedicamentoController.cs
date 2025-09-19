@@ -1,11 +1,11 @@
-﻿using ControleDeMedicamentos.Dominio.ModuloPrescricao;
-using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
+﻿using ControleDeMedicamentos.Dominio.ModuloRequisicaoMedicamento;
 using ControleDeMedicamentos.Infraestrutura.Arquivo.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloFuncionario;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloMedicamento;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPaciente;
 //using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloRequisicaoMedicamento;
+using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloPaciente;
 using ControleDeMedicamentos.WebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -17,14 +17,14 @@ public class RequisicaoMedicamentoController : Controller
     private readonly RepositorioRequisicaoMedicamentoEmArquivo repositorioRequisicaoMedicamento;
     private readonly RepositorioMedicamentoEmArquivo repositorioMedicamento;
     private readonly RepositorioFuncionarioEmArquivo repositorioFuncionario;
-    private readonly RepositorioPacienteEmArquivo repositorioPaciente;
+    private readonly RepositorioPacienteEmSql repositorioPaciente;
     private readonly RepositorioPrescricaoEmArquivo repositorioPrescricao;
 
     public RequisicaoMedicamentoController(
         RepositorioRequisicaoMedicamentoEmArquivo repositorioRequisicaoMedicamento,
         RepositorioMedicamentoEmArquivo repositorioMedicamento,
         RepositorioFuncionarioEmArquivo repositorioFuncionario,
-        RepositorioPacienteEmArquivo repositorioPaciente,
+        RepositorioPacienteEmSql repositorioPaciente,
         RepositorioPrescricaoEmArquivo repositorioPrescricao
     )
     {
