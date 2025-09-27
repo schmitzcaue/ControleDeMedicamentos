@@ -17,8 +17,8 @@ public class RepositorioPacienteEmSql
     {
         const string sql = @"
             INSERT INTO [TBPaciente]
-                ([Id], [Nome], [Telefone], [CartaoSus], [Cpf])
-            VALUES (@Id, @Nome, @Telefone, @CartaoSus, @Cpf);
+                ([Id], [Nome], [Telefone], [CartaoDoSus], [Cpf])
+            VALUES (@Id, @Nome, @Telefone, @CartaoDoSus, @Cpf);
         ";
 
         connection.Execute(sql, new
@@ -66,7 +66,7 @@ public class RepositorioPacienteEmSql
     public List<Paciente> SelecionarRegistros()
     {
         const string sql = @"
-            SELECT [Id], [Nome], [Telefone], [CartaoSus], [Cpf]
+            SELECT [Id], [Nome], [Telefone], [CartaoDoSus], [Cpf]
               FROM [TBPaciente]
             ORDER BY [Nome];
         ";
@@ -77,7 +77,7 @@ public class RepositorioPacienteEmSql
     public Paciente? SelecionarRegistroPorId(Guid idSelecionado)
     {
         const string sql = @"
-            SELECT [Id], [Nome], [Telefone], [CartaoSus], [Cpf]
+            SELECT [Id], [Nome], [Telefone], [CartaoDoSus], [Cpf]
               FROM [TBPaciente]
              WHERE [Id] = @Id;
         ";

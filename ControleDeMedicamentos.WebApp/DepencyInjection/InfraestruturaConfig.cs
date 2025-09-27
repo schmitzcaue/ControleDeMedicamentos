@@ -1,7 +1,6 @@
 ﻿using ControleDeMedicamentos.Infraestrutura.Arquivo.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.Compartilhado;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloMedicamento;
-using ControleDeMedicamentos.Infraestrutura.Arquivo.ModuloPrescricao;
 using ControleDeMedicamentos.Infraestrutura.Arquivos.ModuloRequisicaoMedicamento;
 using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloFornecedor;
 using ControleDeMedicamentos.Infraestrutura.SqlServer.ModuloFuncionario;
