@@ -128,7 +128,7 @@ public class RepositorioPrescricaoEmSql(IDbConnection connection)
                 pa.[Id]        AS [Id],
                 pa.[Nome],
                 pa.[Telefone],
-                pa.[CartaoSus],
+                pa.[CartaoDoSus],
                 pa.[Cpf]
             FROM [TBPrescricao] p
             INNER JOIN [TBPaciente] pa ON pa.[Id] = p.[PacienteId];
@@ -203,5 +203,10 @@ public class RepositorioPrescricaoEmSql(IDbConnection connection)
     public Prescricao? SelecionarRegistroPorId(Guid id)
     {
         return SelecionarRegistros().FirstOrDefault(x => x.Id.Equals(id));
+    }
+
+    public List<Prescricao> SelecionarPrescricoesDoPaciente(Guid pacienteId)
+    {
+        return SelecionarRegistros().Where(x => x.Paciente.Id.Equals(pacienteId)).ToList();
     }
 }
