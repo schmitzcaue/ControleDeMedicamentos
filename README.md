@@ -23,6 +23,7 @@ Ela fornece classes, regras de negócio e serviços que podem ser integrados em 
 - [Licença](#-licença)
 
 ---
+![](https://imgur.com/P4gG8J1.gif)
 
 ## 📌 Sobre a Biblioteca
 O **Controle de Medicamentos** foi desenvolvido para atender cenários de **gestão hospitalar** e **controle farmacêutico**, garantindo que pacientes, fornecedores, medicamentos e prescrições sejam devidamente registrados e controlados.
