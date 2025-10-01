@@ -15,12 +15,6 @@ Ela fornece classes, regras de negócio e serviços que podem ser integrados em 
 - [Prescrições Médicas](#5-módulo-de-prescrições-médicas)
 - [Estoque](#6-módulo-de-estoque)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Instalação](#-instalação)
-- [Exemplo de Uso](#-exemplo-de-uso)
-- [Testes](#-testes)
-- [Contribuição](#-contribuição)
-- [Licença](#-licença)
 
 ---
 ![](https://imgur.com/P4gG8J1.gif)
