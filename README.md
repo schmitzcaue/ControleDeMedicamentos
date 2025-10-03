@@ -8,21 +8,16 @@ Ela fornece classes, regras de negócio e serviços que podem ser integrados em 
 ## 📖 Sumário
 - [Sobre a Biblioteca](#-sobre-a-biblioteca)
 - [Módulos e Requisitos](#-módulos-e-requisitos)
-  - [Fornecedores](#1-módulo-de-fornecedores)
-  - [Pacientes](#2-módulo-de-pacientes)
-  - [Medicamentos](#3-módulo-de-medicamentos)
-  - [Funcionários](#4-módulo-de-funcionários)
-  - [Prescrições Médicas](#5-módulo-de-prescrições-médicas)
-  - [Estoque](#6-módulo-de-estoque)
+- [Fornecedores](#1-módulo-de-fornecedores)
+- [Pacientes](#2-módulo-de-pacientes)
+- [Medicamentos](#3-módulo-de-medicamentos)
+- [Funcionários](#4-módulo-de-funcionários)
+- [Prescrições Médicas](#5-módulo-de-prescrições-médicas)
+- [Estoque](#6-módulo-de-estoque)
 - [Tecnologias Utilizadas](#-tecnologias-utilizadas)
-- [Estrutura do Projeto](#-estrutura-do-projeto)
-- [Instalação](#-instalação)
-- [Exemplo de Uso](#-exemplo-de-uso)
-- [Testes](#-testes)
-- [Contribuição](#-contribuição)
-- [Licença](#-licença)
 
 ---
+![](https://imgur.com/P4gG8J1.gif)
 
 ## 📌 Sobre a Biblioteca
 O **Controle de Medicamentos** foi desenvolvido para atender cenários de **gestão hospitalar** e **controle farmacêutico**, garantindo que pacientes, fornecedores, medicamentos e prescrições sejam devidamente registrados e controlados.
